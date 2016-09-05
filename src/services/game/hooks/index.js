@@ -1,5 +1,7 @@
 'use strict';
 
+const gameHost = require('./game-host');
+
 const globalHooks = require('../../../hooks');
 const auth = require('feathers-authentication').hooks;
 
@@ -12,7 +14,7 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [],
+  create: [gameHost()],
   update: [],
   patch: [],
   remove: []
