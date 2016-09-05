@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import SignUp from './containers/SignUp';
 
 class App extends Component {
 
   render() {
     return(
-      <h1>Hello Feathers!</h1>
+      <SignUp />
     );
   }
 }
