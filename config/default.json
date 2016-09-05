@@ -7,6 +7,7 @@
     "token": {
       "secret": "cdnFQSvsERwWU3yNrlrxPlWfJM4+NmA+A4I2jWUPonefFgVW5at8Jm6N79M23xzEWrzAl41Z/6/JQ3mxF45syg=="
     },
-    "local": {}
+    "local": {},
+    "successRedirect": "/games"
   }
 }
