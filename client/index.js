@@ -4,7 +4,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import ChatTheme from './styles/base-theme';
-import App from './app';
+import App from './App';
 
 if (module.hot) {
   module.hot.accept();
