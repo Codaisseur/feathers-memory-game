@@ -22,7 +22,9 @@ import App from './App';
 injectTapEventPlugin();
 
 render(
-  <MuiThemeProvider muiTheme={getMuiTheme(ChatTheme)}>
-    <App />
-  </MuiThemeProvider>,
+  <Provider store={store}>
+    <MuiThemeProvider muiTheme={getMuiTheme(ChatTheme)}>
+      <App />
+    </MuiThemeProvider>
+  </Provider>,
 document.getElementById('app'));
