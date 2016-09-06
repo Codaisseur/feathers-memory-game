@@ -15,8 +15,8 @@ const errorMargin = {
 }
 
 const dialogStyle = {
-  width: '80%',
-  margin: 'auto',
+  width: '400px',
+  margin: '50px auto',
   padding: '2rem',
 }
 
