@@ -29,6 +29,10 @@ class API {
       password,
     }))
   }
+
+  signOut() {
+    return this.app.logout()
+  }
 }
 
 export default API
