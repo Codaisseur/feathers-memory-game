@@ -27,6 +27,7 @@
     "cors": "^2.8.0",
     "feathers": "^2.0.1",
     "feathers-authentication": "^0.7.10",
+    "feathers-client": "^1.5.3",
     "feathers-configuration": "^0.2.3",
     "feathers-errors": "^2.4.0",
     "feathers-hooks": "^1.5.7",
@@ -42,7 +43,9 @@
     "react-router": "^2.7.0",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
     "serve-favicon": "^2.3.0",
+    "socket.io-client": "^1.4.8",
     "winston": "^2.2.0"
   },
   "devDependencies": {

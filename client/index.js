@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -11,7 +12,10 @@ import * as reducers from './reducers';
 
 const reducer = combineReducers(reducers);
 const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
-const enhancer = compose(devTools);
+const enhancer = compose(
+  applyMiddleware(ReduxThunk),
+  devTools
+);
 
 // Note: passing enhancer as the last argument requires redux@>=3.1.0
 const store = createStore(reducer, enhancer);
