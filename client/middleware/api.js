@@ -23,11 +23,11 @@ class API {
 
   authenticate(user) {
     const { email, password } = user
-    debugger
-    return this.app.authenticate({
+    return this.app.authenticate(
+      Object.assign({}, { type: 'local' }, {
       email,
       password,
-    })
+    }))
   }
 }
 

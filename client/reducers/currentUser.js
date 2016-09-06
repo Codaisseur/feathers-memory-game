@@ -1,9 +1,8 @@
-import { REGISTER_USER } from '../actions/register-user'
+import { USER_AUTHENTICATED } from '../actions/user-authenticated'
 
-export default function updateUser(state = {}, { type, payload }) {
+export default function storeCurrentUser(state = {}, { type, payload }) {
   switch (type) {
-    case REGISTER_USER :
-      console.log(payload)
+    case USER_AUTHENTICATED :
       return payload
 
     default :
