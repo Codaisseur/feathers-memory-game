@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import feathers from 'feathers-client';
 
-class Api {
+class API {
   constructor() {
     // Establish a Socket.io connection
     const socket = io();
@@ -18,13 +18,17 @@ class Api {
   }
 
   service(serviceName) {
-    return this.app.service
+    return this.app.service(serviceName)
   }
 
-  authenticate({ email, password }) {
+  authenticate(user) {
+    const { email, password } = user
+    debugger
     return this.app.authenticate({
       email,
       password,
     })
   }
 }
+
+export default API

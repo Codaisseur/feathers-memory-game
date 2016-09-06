@@ -40,7 +40,11 @@ class SignUp extends Component {
           <TextField ref="name" hintText="Your name"/>
         </div>
         <div>
-          <TextField type="email" ref="email" hintText="Your email"/>
+          <TextField
+            type="email"
+            ref="email"
+            hintText="Your email"
+            errorText={ formErrors.email }/>
         </div>
         <div>
           <TextField type="password" ref="password" hintText="Your password"/>
