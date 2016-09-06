@@ -39,16 +39,6 @@ class SignInOrUp extends Component {
     return this.signInUser()
   }
 
-  formValues() {
-    const { name, email, password, passwordConfirmation } = this.refs
-    return {
-      name: name && name.getValue(),
-      email: email && email.getValue(),
-      password: password && password.getValue(),
-      passwordConfirmation: passwordConfirmation && passwordConfirmation.getValue(),
-    }
-  }
-
   registerUser() {
     this.props.resetFormErrors()
 
@@ -67,6 +57,16 @@ class SignInOrUp extends Component {
     this.props.resetFormErrors()
     const { email, password } = this.formValues()
     this.props.authenticateUser({ email, password })
+  }
+
+  formValues() {
+    const { name, email, password, passwordConfirmation } = this.refs
+    return {
+      name: name && name.getValue(),
+      email: email.getValue(),
+      password: password.getValue(),
+      passwordConfirmation: passwordConfirmation && passwordConfirmation.getValue(),
+    }
   }
 
   toggleSignUp() {

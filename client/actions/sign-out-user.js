@@ -3,7 +3,7 @@ import appLoading from './app-loading'
 import appDoneLoading from './app-done-loading'
 import userSignedOut from './user-signed-out'
 
-export default function authenticateUser(user) {
+export default function signOutUser() {
   return dispatch => {
     // We're loading (communicating with the API asynchronously)
     dispatch(appLoading())
