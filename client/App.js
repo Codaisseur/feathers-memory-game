@@ -6,6 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import signOut from './actions/sign-out-user'
 import SignInOrUp from './containers/SignInOrUp'
+import Game from './containers/Game'
 import Loader from './components/Loader'
 import FlatButton from 'material-ui/FlatButton'
 
@@ -15,7 +16,7 @@ class App extends Component {
   }
 
   render() {
-    const { loading, authenticated, currentUser } = this.props
+    const { loading, authenticated, currentUser, cards } = this.props
 
     return(
       <div>
@@ -28,6 +29,7 @@ class App extends Component {
                 onClick={ this.signOut.bind(this) }
                 label="Sign out"/>
             </p>
+            <Game />
           </div>) :
             <SignInOrUp/> }
       </div>
