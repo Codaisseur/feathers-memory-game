@@ -1,6 +1,7 @@
 import authenticated from './authenticated'
 import cards from './cards'
 import currentUser from './currentUser'
+import games from './games'
 import formErrors from './formErrors'
 import loading from './loading'
 
@@ -9,6 +10,7 @@ module.exports = {
   cards,
   currentUser,
   formErrors,
+  games,
   loading,
 }
 

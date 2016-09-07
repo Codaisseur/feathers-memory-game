@@ -1,5 +1,22 @@
-export const CREATE_GAME = 'CREATE_GAME'
+import api from '../middleware/api'
+import appLoading from './app-loading'
+import appDoneLoading from './app-done-loading'
 
-export default function createGame() {
-  return { type: CREATE_GAME }
+export const GAME_CREATED = 'GAME_CREATED'
+
+export default function createGame(game) {
+  return dispatch => {
+    dispatch(appLoading())
+    api.authThenCreate('games', game, (resource) => {
+      dispatch(gameCreated(resource))
+    })
+    dispatch(appDoneLoading())
+  }
+}
+
+function gameCreated(game) {
+  return {
+    type: GAME_CREATED,
+    payload: game
+  }
 }

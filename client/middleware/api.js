@@ -21,6 +21,22 @@ class API {
     return this.app.service(serviceName)
   }
 
+  authThenFind(serviceName, callback) {
+    this.app.authenticate().then(() => {
+      this.app.service(serviceName).find({})
+        .then(callback)
+        .catch((error) => { console.log(error) })
+    })
+  }
+
+  authThenCreate(serviceName, data, callback) {
+    this.app.authenticate().then(() => {
+      this.app.service(serviceName).create(data)
+        .then(callback)
+        .catch((error) => { console.log(error) })
+    })
+  }
+
   authenticate(user) {
     const { email, password } = user
     return this.app.authenticate(
@@ -35,4 +51,6 @@ class API {
   }
 }
 
-export default API
+const Api = new API()
+
+export default Api
