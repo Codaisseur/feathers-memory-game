@@ -17,13 +17,32 @@ const enhancer = compose(
   devTools
 );
 
+export default function configureStore() {
+  const store = createStore(reducer, enhancer);
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = require('./reducers/index');
+      store.replaceReducer(nextRootReducer);
+    });
+  }
+
+  return store;
+}
+
 // Note: passing enhancer as the last argument requires redux@>=3.1.0
-const store = createStore(reducer, enhancer);
+const store = configureStore();
 
 import App from './App';
 
 // Note: At the moment injectTapEventPlugin can only be called once. Put it at the top level of your application, just before you call ReactDOM.render. For more detail go to this site: https://github.com/zilverline/react-tap-event-plugin/issues/47
-injectTapEventPlugin();
+try {
+  injectTapEventPlugin()
+}
+catch(error) {
+  console.log('Ignoring injectTapEventPlugin error')
+}
 
 render(
   <Provider store={store}>

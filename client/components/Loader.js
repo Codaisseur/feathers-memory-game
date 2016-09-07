@@ -15,7 +15,7 @@ const Loader = (props) => (
   <div style={ loaderStyle.container }>
     <CircularProgress />
     <p style={ loaderStyle.message }>
-      { props.message }
+      { props.message || "Loading..." }
     </p>
   </div>
 );

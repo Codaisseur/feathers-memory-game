@@ -20,11 +20,15 @@ module.exports = {
       query: {
         presets: ['es2015', 'react']
       },
-      exclude: /node_modules/
+      exclude: /node_modules/,
+      include: path.join(__dirname, 'client')
     }]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
   ]
 };
