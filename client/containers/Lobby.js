@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
-import GameModel from '../models/game-model'
+import model from '../models/game-model'
 import setupGames from '../actions/setup-games'
 import GameItem from '../components/GameItem'
 import joinGame from '../actions/join-game'
@@ -9,12 +9,11 @@ import Game from './Game'
 
 class Lobby extends Component {
   componentDidMount() {
-    this.model = new GameModel()
-    this.props.setupGames(this.model)
+    this.props.setupGames()
   }
 
   createGame() {
-    this.model.create({})
+    model.create({})
   }
 
   joinGame(game) {
@@ -53,7 +52,7 @@ const mapStateToProps = (state) => {
   return {
     games: state.games,
     currentGame: state.currentGame,
-    currentPlayer: state.currentPlayer,
+    currentUser: state.currentUser,
   }
 }
 

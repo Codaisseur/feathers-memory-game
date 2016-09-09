@@ -17,28 +17,8 @@ class API {
       }));
   }
 
-  app() {
-    return this.app
-  }
-
   service(serviceName) {
     return this.app.service(serviceName)
-  }
-
-  authThenFind(serviceName, params, callback) {
-    this.app.authenticate().then(() => {
-      this.app.service(serviceName).find(params)
-        .then(callback)
-        .catch((error) => { console.log(error) })
-    })
-  }
-
-  authThenCreate(serviceName, data, callback) {
-    this.app.authenticate().then(() => {
-      this.app.service(serviceName).create(data)
-        .then(callback)
-        .catch((error) => { console.log(error) })
-    })
   }
 
   authenticate(user) {

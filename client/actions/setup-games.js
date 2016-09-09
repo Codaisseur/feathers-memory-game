@@ -1,8 +1,8 @@
-import GameModel from '../models/game-model'
+import model from '../models/game-model'
 
 export const GAME_SETUP = 'GAME_SETUP'
 
-export default function setupGames(model) {
+export default function setupGames() {
   return dispatch => {
     model.dispatch = dispatch
     model.app.authenticate().then((response) => {

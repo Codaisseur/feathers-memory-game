@@ -1,6 +1,7 @@
 'use strict';
 
-const gameHost = require('./game-host');
+const createGame = require('./create-game');
+const winner = require('./winner');
 
 const globalHooks = require('../../../hooks');
 const auth = require('feathers-authentication').hooks;
@@ -11,7 +12,6 @@ const populateHostedBy = hooks.populate('hostedBy', {
   field: 'userId'
 });
 
-
 exports.before = {
   all: [
     auth.verifyToken(),
@@ -20,9 +20,9 @@ exports.before = {
   ],
   find: [],
   get: [],
-  create: [gameHost()],
-  update: [],
-  patch: [],
+  create: [createGame()],
+  update: [winner()],
+  patch: [winner()],
   remove: []
 };
 

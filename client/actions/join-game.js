@@ -1,4 +1,4 @@
-import GameModel from '../models/game-model'
+import model from '../models/game-model'
 
 export const GAME_JOINED = 'GAME_JOINED'
 
@@ -6,8 +6,8 @@ export default function joinGame(game, currentUser) {
   return dispatch => {
     dispatch(setCurrentGame(game))
 
-    const model = new GameModel(dispatch)
-    if (game.players.filter((player) => (player._id === currentUser._id)).length > 0) {
+    if (game.players.filter((player) => (player.userId === currentUser._id)).length > 0) {
+      console.log('We are done?')
       return // we're done!
     }
 
@@ -19,6 +19,7 @@ export default function joinGame(game, currentUser) {
 
     const currentPlayer = {
       userId: currentUser._id,
+      name: currentUser.name,
       color: playerColors[game.players.length],
       pairs: []
     }

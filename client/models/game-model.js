@@ -1,4 +1,5 @@
-import BaseModel from './base-model'
+import BaseModel from 'feathersjs-redux-model/build/models/base-model'
+// import BaseModel from './base-model'
 
 class GameModel extends BaseModel {
   flipCard(game, index, currentPlayer) {
@@ -9,45 +10,24 @@ class GameModel extends BaseModel {
       .concat([Object.assign({}, card, { flipped: !card.flipped })])
       .concat(oldCards.slice(index + 1))
 
-    this.save(game, { cards })
-
-    this.checkCards(game, cards, currentPlayer)
+    window.setTimeout(() => {
+      this.save(game, Object.assign({}, game, { cards }), true)
+      this.flipBackCards(game, cards, currentPlayer)
+    }, 300)
   }
 
-  checkCards(game, cards, currentPlayer) {
+  flipBackCards(game, cards, currentPlayer) {
     console.log('This is where I check the cards!')
     const flippedCards = cards.filter((card) => (card.flipped))
     if (flippedCards.length === 2) {
-      console.log('Two cards are flipped, checking...')
-      let newPlayers = game.players
+      console.log('Two cards are flipped, flipping back...')
       window.setTimeout(() => {
-        if (flippedCards[0].symbol === flippedCards[1].symbol) {
-          console.log('Cards match! Assigning pairs to player...', currentPlayer, flippedCards[0].symbol)
-          newPlayers[currentPlayer].pairs.push(flippedCards[0].symbol)
-          console.log(newPlayers)
-        } else {
-          console.log('Cards do not match, flipping back..!')
-        }
         let newCards = game.cards.map((card) => {
           return Object.assign({}, card, { flipped: false })
         })
-        this.save(game, { players: newPlayers, cards: newCards })
-        this.nextPlayer(game, currentPlayer)
-      }, 3000)
+        this.save(game, { cards: newCards })
+      }, 1000)
     }
-  }
-
-  nextPlayer(game, currentPlayer) {
-    console.log('Neeeeeext..!')
-    const totalPlayers = game.players.length
-    let nextPlayer = currentPlayer++
-    if (nextPlayer >= totalPlayers - 1) {
-      nextPlayer = 0
-    }
-    this.dispatch({
-      type: 'NEW_PLAYER_TURN',
-      payload: nextPlayer
-    })
   }
 
 
@@ -77,4 +57,6 @@ class GameModel extends BaseModel {
   }
 }
 
-export default GameModel
+const gameModel = new GameModel()
+
+export default gameModel

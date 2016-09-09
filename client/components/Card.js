@@ -16,9 +16,33 @@ const style = {
 }
 
 class Card extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      flipping: false
+    }
+  }
+
   flipMe() {
-    const { flipCard, index } = this.props
-    flipCard(index)
+    const { flipCard, index, playerHasTurn } = this.props
+
+    this.setState({
+      flipping: playerHasTurn
+    });
+
+    window.setTimeout(() => {
+      this.setState({
+        flipping: false
+      });
+      flipCard(index)
+    }, 300)
+  }
+
+  cardStyle() {
+    return this.state.flipping ?
+      Object.assign({}, style.paper, { backgroundColor: '#ccf'}) :
+      style.paper
   }
 
   render() {
@@ -27,7 +51,7 @@ class Card extends Component {
     return (
       <GridTile onClick={ this.flipMe.bind(this) }>
         { won ? null :
-          <Paper style={ style.paper } zDepth={1}>
+          <Paper style={ this.cardStyle() } zDepth={1}>
             <h1 style={ style.symbol }>{ flipped ? symbol : '' }</h1>
           </Paper>
         }
