@@ -13,6 +13,12 @@ module.exports = function(options) {
   return function(hook) {
     const user = hook.params.user;
 
+    hook.data.userId = user._id;
+
+    const symbols = 'ABCDEFGH'.repeat(2).split('')
+    hook.data.cards = symbols
+      .map((symbol) => ({ flipped: false, symbol: symbol }))
+
     hook.data.players = [{
       userId: user._id,
       color: '#f00',

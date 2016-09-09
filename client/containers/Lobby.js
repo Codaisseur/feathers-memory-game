@@ -1,26 +1,36 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
-import fetchGames from '../actions/fetch-games'
-import createGame from '../actions/create-game'
+import GameModel from '../models/game-model'
+import setupGames from '../actions/setup-games'
+import GameItem from '../components/GameItem'
+import joinGame from '../actions/join-game'
+import Game from './Game'
 
 class Lobby extends Component {
   componentDidMount() {
-    this.props.fetchGames()
+    this.model = new GameModel()
+    this.props.setupGames(this.model)
   }
 
   createGame() {
-    this.props.createGame({})
+    this.model.create({})
+  }
+
+  joinGame(game) {
+    this.props.joinGame(game, this.props.currentUser)
   }
 
   renderGameItem(game, index) {
     return (
-      <li key={index}>Game by { game.players[0].name }</li>
+      <GameItem key={index} game={game} onClick={this.joinGame.bind(this)} />
     )
   }
 
   render() {
     return (
+      this.props.currentGame._id ?
+      <Game game={this.props.currentGame} /> :
       <div>
         <h1>Games Lobby</h1>
         <div>
@@ -35,7 +45,6 @@ class Lobby extends Component {
           </ul>
         </div>
       </div>
-
     )
   }
 }
@@ -43,7 +52,9 @@ class Lobby extends Component {
 const mapStateToProps = (state) => {
   return {
     games: state.games,
+    currentGame: state.currentGame,
+    currentPlayer: state.currentPlayer,
   }
 }
 
-export default connect(mapStateToProps, { fetchGames, createGame })(Lobby)
+export default connect(mapStateToProps, { setupGames, joinGame })(Lobby)

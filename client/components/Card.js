@@ -22,13 +22,15 @@ class Card extends Component {
   }
 
   render() {
-    const { flipped, symbol } = this.props
+    const { flipped, symbol, won } = this.props
 
     return (
       <GridTile onClick={ this.flipMe.bind(this) }>
-        <Paper style={ style.paper } zDepth={1}>
-          <h1 style={ style.symbol }>{ flipped ? symbol : '' }</h1>
-        </Paper>
+        { won ? null :
+          <Paper style={ style.paper } zDepth={1}>
+            <h1 style={ style.symbol }>{ flipped ? symbol : '' }</h1>
+          </Paper>
+        }
       </GridTile>
     )
   }

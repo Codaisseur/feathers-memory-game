@@ -4,6 +4,12 @@ const gameHost = require('./game-host');
 
 const globalHooks = require('../../../hooks');
 const auth = require('feathers-authentication').hooks;
+const hooks = require('feathers-hooks');
+
+const populateHostedBy = hooks.populate('hostedBy', {
+  service: 'users',
+  field: 'userId'
+});
 
 
 exports.before = {
@@ -22,9 +28,9 @@ exports.before = {
 
 exports.after = {
   all: [],
-  find: [],
-  get: [],
-  create: [],
+  find: [populateHostedBy],
+  get: [populateHostedBy],
+  create: [populateHostedBy],
   update: [],
   patch: [],
   remove: []

@@ -4,6 +4,7 @@ import appDoneLoading from './app-done-loading'
 import userAuthenticated from './user-authenticated'
 import setFormErrors from './set-form-errors'
 import resetFormErrors from './reset-form-errors'
+import userSignedOut from './user-signed-out'
 
 export default function authenticateUser(user) {
   return dispatch => {
@@ -19,6 +20,7 @@ export default function authenticateUser(user) {
     }).catch((error) => {
       console.error('Error authenticating!', error);
       dispatch(setFormErrors({ email: error.message }))
+      dispatch(userSignedOut())
       dispatch(appDoneLoading())
     })
   }

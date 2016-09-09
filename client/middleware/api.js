@@ -17,13 +17,17 @@ class API {
       }));
   }
 
+  app() {
+    return this.app
+  }
+
   service(serviceName) {
     return this.app.service(serviceName)
   }
 
-  authThenFind(serviceName, callback) {
+  authThenFind(serviceName, params, callback) {
     this.app.authenticate().then(() => {
-      this.app.service(serviceName).find({})
+      this.app.service(serviceName).find(params)
         .then(callback)
         .catch((error) => { console.log(error) })
     })

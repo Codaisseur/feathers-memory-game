@@ -1,7 +1,7 @@
 'use strict';
 
 // game-model.js - A mongoose model
-// 
+//
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 
@@ -26,7 +26,8 @@ const gameSchema = new Schema({
   winner: { type: Number, required: false },
   turn: { type: Number, required: true, 'default': 0 },
   createdAt: { type: Date, 'default': Date.now },
-  updatedAt: { type: Date, 'default': Date.now }
+  updatedAt: { type: Date, 'default': Date.now },
+  userId: { type: Schema.Types.ObjectId, ref: 'user' }
 });
 
 const gameModel = mongoose.model('game', gameSchema);
