@@ -1,7 +1,3 @@
-if (module.hot) {
-  module.hot.accept();
-}
-
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import signOut from './actions/sign-out-user'

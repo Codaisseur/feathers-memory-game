@@ -1,7 +1,4 @@
-'use strict';
-
-const signup = require('./signup');
-
+const path = require('path');
 const handler = require('feathers-errors/handler');
 const notFound = require('./not-found-handler');
 const logger = require('./logger');
@@ -12,7 +9,12 @@ module.exports = function() {
   // handling middleware should go last.
   const app = this;
 
-  app.post('/signup', signup(app));
+  // All GET requests to unknown paths go through React's index to facilitate
+  // React Router. Feathers middleware should go above here.
+  app.get('*', function(req, res) {
+    res.sendFile( path.join(app.get('public'), 'index.html') );
+  });
+
   app.use(notFound());
   app.use(logger(app));
   app.use(handler());

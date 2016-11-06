@@ -3,7 +3,7 @@ import model from '../models/game-model'
 export const GAME_JOINED = 'GAME_JOINED'
 
 export default function joinGame(game, currentUser) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(setCurrentGame(game))
 
     if (game.players.filter((player) => (player.userId === currentUser._id)).length > 0) {

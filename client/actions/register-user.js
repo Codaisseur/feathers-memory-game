@@ -6,7 +6,7 @@ import setFormErrors from './set-form-errors'
 import resetFormErrors from './reset-form-errors'
 
 export default function registerUser(user) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(resetFormErrors())
     // We're loading (communicating with the API asynchronously)
     dispatch(appLoading())

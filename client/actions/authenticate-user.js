@@ -7,7 +7,7 @@ import resetFormErrors from './reset-form-errors'
 import userSignedOut from './user-signed-out'
 
 export default function authenticateUser(user) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(resetFormErrors())
     // We're loading (communicating with the API asynchronously)
     dispatch(appLoading())

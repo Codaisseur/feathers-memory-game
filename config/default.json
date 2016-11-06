@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3030,
-  "mongodb": "mongodb://localhost:27017/MemoryGame",
+  "mongodb": "mongodb://localhost:27017/MemoryGame05",
   "public": "../client/",
   "auth": {
     "token": {

@@ -1,48 +1,23 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import ReduxThunk from 'redux-thunk'
+import store from './store'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import ChatTheme from './styles/base-theme';
-
-import * as reducers from './reducers';
-
-const reducer = combineReducers(reducers);
-const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
-const enhancer = compose(
-  applyMiddleware(ReduxThunk),
-  devTools
-);
-
-export default function configureStore() {
-  const store = createStore(reducer, enhancer);
-
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers/index');
-      store.replaceReducer(nextRootReducer);
-    });
-  }
-
-  return store;
-}
-
-// Note: passing enhancer as the last argument requires redux@>=3.1.0
-const store = configureStore();
-
 import App from './App';
 
-// Note: At the moment injectTapEventPlugin can only be called once. Put it at the top level of your application, just before you call ReactDOM.render. For more detail go to this site: https://github.com/zilverline/react-tap-event-plugin/issues/47
-try {
+// Note: At the moment injectTapEventPlugin can only be called once. Put it at
+// the top level of your application, just before you call ReactDOM.render.
+// For more detail visit this issue:
+// https://github.com/zilverline/react-tap-event-plugin/issues/47
+// try {
   injectTapEventPlugin()
-}
-catch(error) {
-  console.log('Ignoring injectTapEventPlugin error')
-}
+// }
+// catch(error) {
+//   console.log('Ignoring injectTapEventPlugin error')
+// }
 
 render(
   <Provider store={store}>
